@@ -1,20 +1,22 @@
+import React from 'react'
 import Dice from './components/Dice'
 
 export default function App() {
+  const [dice, setDice] = React.useState(allNewDice())
+
+  function allNewDice() {
+    const newDice = []
+    for (let i = 0; i < 10; i++) {
+      newDice.push(Math.ceil(Math.random() * 6))
+    }
+    return newDice
+  }
+
+  const diceElements = dice.map((die) => <Dice value={die} />)
+
   return (
     <main>
-      <div className="dice--container">
-        <Dice value="1" />
-        <Dice value="2" />
-        <Dice value="3" />
-        <Dice value="4" />
-        <Dice value="5" />
-        <Dice value="6" />
-        <Dice value="7" />
-        <Dice value="8" />
-        <Dice value="9" />
-        <Dice value="10" />
-      </div>
+      <div className="dice--container">{diceElements}</div>
     </main>
   )
 }
